@@ -5,8 +5,34 @@
 \begin{document}
 \chapter{Introduction}
 \section{Background}
+Gas phase calculations for Quantum chemical systems are well defined and
+reliable results are able to be calculated from them, but it is rare for a chemist
+to work with exclusively gas phase properties. Most of the processes of interest
+in chemical, biological and physical mechanisms happen while in a solvent \cite{FossoTande:2013ka}.
+Therefore it is important to be able to produce reliable results when working
+with these systems. Many models exist to solve this system, outlined in chapter
+\ref{chap:Solvent_effect}, but the family of models we are focusing on is \ac{PCM}.
+
+A big hurdle of \ac{PCM} is working with the sharp transition between solvent and
+solute. Numerous methods have been implemented in order to minimize the discontinuity
+at this boundary \cite{Tomasi:2005ipa}. Our approach is to define both the solvent
+and substrate environments as an analytical function represented with \ac{MW} basis.
+
+\ac{MW} are a part of a family of basis called \ac{MRA} bases. These basis have useful
+characteristics for development of solutions of partial differential equations.
+These are orthogonality of wavelet spaces, vanishing moments and locally adaptive
+representations of functions, which allow for further refining critical areas of a system.
+
 
 \section{Summary of Results}
+
+We found that the implementation managed to produce values that did not differ
+significantly from exact calculations of the properties tested, these being the Born energy of
+the solvent \cite{Tomasi:1994wt} and Gauss' theorem as defined in \cite{Sorland}.
+The Energy calculations yielded results that converged towards Gaussian results
+as the radii increased. We also tested the Variational formulation of the
+\ac{GPE} shown in \cite{Lipparini:2010bg}, which gave promising results for
+small systems, such as \ce{Li^+}, but showed room for improvement for bigger systems.
 
 \section{Structure of thesis}
 In chapter \ref{chap:Quantum_chemistry} of this thesis we will present the quantum
@@ -53,7 +79,7 @@ common objects in mathematics and quantum mechanics.
     \rule{0pt}{12.5pt}Operators & Presented as a symbol with a \^~above it & $\hat{O}, \hat{H}, \hat{F}$  \\  \hline
     \rule{0pt}{12.5pt}functions & presented by a letter with their input variables enclosed in brackets () & $f(x), \Psi(\rvec)$\\  \hline
     \rule{0pt}{12.5pt}functionals & presented by a letter with their input functions enclosed in square brackets [] & $E[f], F[\Psi]  $\\  \hline
-  \end{tabular}}{\caption{}\label{tab:notation}}
+  \end{tabular}}{\caption{Notation used in this thesis}\label{tab:notation}}
 \end{table}
 
 Additionally we will mostly be working with atomic units. This means that many common
@@ -68,6 +94,6 @@ defined as
 \begin{equation}
   \braket{\Psi|\Phi} = \int_{\Real^3} \Psi^{\star}\Phi \text{d}\rvec
 \end{equation}
-
+\input{acronyms.tex}
 \biblio
 \end{document}

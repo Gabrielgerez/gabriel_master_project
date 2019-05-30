@@ -20,7 +20,6 @@ my.compile
 *.fdb_latexmk
 *.ipynb
 *.ipynb_checkpoints
-*.pdf
 *.tex.bak
 *.lof
 *.lot
