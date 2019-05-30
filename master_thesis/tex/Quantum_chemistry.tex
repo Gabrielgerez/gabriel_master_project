@@ -17,13 +17,10 @@ The first postulate states that everything we can know about a physical system
 can be extracted from the wave function $\Psi(x, t)$ of that system
 \cite{Atkins:2011}. Additionally at a time $t_0$ the system is defined by
 a state vector (or wave function) $\ket{\Psi(t_0)}\in L^2$ that has a defined
-finite scalar product as \cite{Cohen:1973}:
-\begin{equation}
-  \braket{\Psi|\Psi} = \|\ket{\Psi}\|^2 =  \int_{\mathbb{R}^3}\Psi^\star\Psi d\vec{r}
-\end{equation}
+finite scalar product as shown in Equation \ref{eq:diracproduc} \cite{Cohen:1973}
 
 \subsubsection{Second Postulate}
-A generic observable $O$ is represented by the application of a generic operator
+A generic observable $O$ is represented by a generic operator
 $\hat{O}$. Two such observables are the position and momentum of a particle. These are
 represented by $\hat{q_i}$ and $\hat{p_i}$ respectively, where
 $i = \{x, y, z\}$. These operators fulfill the following commutation relations
@@ -36,17 +33,7 @@ $i = \{x, y, z\}$. These operators fulfill the following commutation relations
   \end{split}
 \end{align}
 
-The operators that represent observables are Hermitian, meaning that
-\cite{Cohen:1973}:
-\begin{equation}
-  \hat{O} = (\hat{O}^{\star})^T = (\hat{O}^T)^{\star} = \hat{O}^{\dagger}
-\end{equation}
-
-These operators are linear as well:
-\begin{equation}
-    \hat{O}(f + g) = \hat{O}f + \hat{O}g\label{eq:oplinearity}
-\end{equation}
-Where $f$ and $g$ are functions.
+The Operators that represent observables are linear and Hermitian.
 
 \subsubsection{Third Postulate}
 When measuring an observable $O$ on a system $\ket{\Psi}$, the only possible

@@ -3,41 +3,45 @@
 \makeatother
 \documentclass[../master_thesis.tex]{subfiles}
 \begin{document}
-\chapter{Implementation}\label{chap:implementation}
-\section{Fosso-Tande \& Harrison's \ac{GPE}}
-Fosso-Tande and Harrison described in \cite{FossoTande:2013ka} a \ac{GPE} that
-included a dielectric function which was analytical through the cavity boundary.
-This model was explained with more detail in chapter \ref{chap:Solvent_effect} and
-it will not be explained again, here we will show how it was implemented on
+\chapter{Implementation of The Generalized Poisson Equation}\label{chap:implementation}
+\section{Generalized Poisson equation on Multiwavelet basis}
+In the following chapter we will outline our implementation of the \ac{GPE}
+for solvent systems. We took Fosso--Tande's and Harrison's
+paper in \cite{FossoTande:2013ka} as a starting point. There they defined
+how to solve a \ac{GPE} that included a dielectric function which was analytical
+through the cavity boundary. This model was explained with more detail in chapter \ref{chap:Solvent_effect} and
+it will not be explained again.
 \mrchem.
 \subsection{Cavity Function}
 The first step was to create a cavity function as in \cite{FossoTande:2013ka}.
 This was done by creating a cavity object that stored the coordinates of nuclei
 $\rvec_I$ and their characteristic radii $R_I$. When a point $\rvec$ is evaluated
-in the Cavity function it will return $0$ if it is outside the cavity and $1$ if
-it is inside the Interlocking spheres cavity defined by the nuclei coordinates
-and their radii. Additionally we wanted to be able to change the width of the
-boundary $\sigma$. The structure of the cavity object is as in Algorithm \ref{alg:Cavity}
+in the Cavity function it will return $0$ if it is outside and $1$ if
+it is inside  and will have a sigmoidal shape at the boundary  of the
+Interlocking spheres cavity defined by the nuclei coordinates and their radii.
+Additionally we wanted to be able to change the width of the
+boundary with a parameter $\sigma$. The structure of the cavity object is as
+in Algorithm \ref{alg:Cavity}
 
 \begin{algorithm}
   \caption{Cavity object}\label{alg:Cavity}
   \begin{algorithmic}
     \STATE \underline{\textbf{Initialize $C(\rvec)$}}
-    \STATE \textbf{Input :} Coordinates, Radii, Width
-    \STATE $\sigma = $ Width
-    \STATE $C_{tot}(\rvec) = 1$
-    \FOR{ All Coordinates and Radii $I$}
-     \STATE $\rvec_I = $ Coordinate$_I$
-     \STATE $R_I = \text{Radius}_I$
+    \STATE \textbf{Input :} Molecular Coordinates, Radii, Width
+    \STATE $\sigma \leftarrow $ Width
+    \STATE Set $C_{tot}(\rvec) = 1$
+    \FOR{ All Nuclei $I$}
+     \STATE $\rvec_I \leftarrow $ Molecular Coordinate$_I$
+     \STATE $R_I \leftarrow \text{Radius}_I$
     \ENDFOR
     \STATE
-    \STATE \underline{\textbf{Evaluate $C(\rvec)$}}
+    \STATE \underline{\textbf{When Evaluating $C(\rvec)$}}
     \STATE \textbf{Input: } $\rvec$
-    \FOR{All $I$}
+    \FOR{All Nuclei I}
       \STATE $s_I(\rvec) = \abs{\rvec - \rvec_I} - R_I$
       \STATE $\Theta_I(\rvec) = \frac{1}{2}\left(1 + \erf\left(\frac{s_I(\rvec)}{\sigma}\right)\right)$
       \STATE $ C_I(\rvec) = 1 -\Theta_I(\rvec) $
-      \STATE $ C_{tot}(\rvec) = C_{tot}(\rvec) \cdot (1 - C_{I}(\rvec))$
+      \STATE $ C_{tot}(\rvec) \leftarrow C_{tot}(\rvec) \cdot (1 - C_{I}(\rvec))$
     \ENDFOR
     \RETURN $ 1 - C_{tot}(\rvec)$
   \end{algorithmic}
@@ -51,38 +55,39 @@ in those two equations, with no changes to them, except for minor syntax related
 adjustments. Their $\log$ derivatives had to be implemented separately,
 this was done in order to have better convergence \cite{FossoTande:2013ka}. The
 $\log$ derivative of the exponential dielectric function is represented as the
-derivative of the Cavity multiplied by a constant. The cavity of Water as implemented
+derivative of the Cavity multiplied by a constant. The cavity of water as implemented
 above can be seen in Figure \ref{fig:watcav} as a slice through the $xz$ plane.
 
 \begin{figure}[ht]
   \includegraphics[width=\linewidth]{img/Figure_1-1.png}
-  \caption{Interlocking spheres cavity slice for water}
+  \caption[Interlocking spheres cavity for water]{Interlocking spheres cavity function slice for water as implemented in algorithm \ref{alg:Cavity}}
   \label{fig:watcav}
 \end{figure}
+\clearpage
 
 \subsection{Effective volume charge distribution}
 When Running a \ac{SCF} calculation one calculates with electron densities in order
 to solve an electron \SE as is consistent with the \ac{BO} approximation
-\cite{Cramer:2004, Konishi:2009}, whereas Fosso-Tande and Harrison's \ac{GPE}
-needs the total molecular density $\rho_{tot}$. This is computed as a sum of the electron
-density $\rho_{el}$ and a computed nuclear density $\rho_{nuc}$ based on the '
+\cite{Cramer:2004, Konishi:2009}, whereas the \ac{GPE} needs the total molecular
+density $\rho_{tot}$. This is computed as a sum of the electron
+density $\rho_{el}$ and the nuclear density $\rho_{nuc}$ based on the
 geometry and charge of the nuclei
 \begin{equation}
   \rho_{tot} = \rho_{el} + \rho_{nuc}
 \end{equation}.
-The following algorithm \ref{alg:rhonuc} shows how we calculate the nuclear
-density $\rho_{nuc}$ for the total density by use of Gaussian functions centered at
-each nucleus.
+Algorithm \ref{alg:rhonuc} shows how we calculated the nuclear
+density $\rho_{nuc}$ for the total density by use of point charges represented as
+Gaussian functions centered at each nucleus.
 \begin{algorithm}
   \caption{Nuclear charge density}\label{alg:rhonuc}
   \begin{algorithmic}
-    \STATE \textbf{Input :} Nuclear coordinates, Charges
+    \STATE \textbf{Input :} Nuclear coordinates, $Z_I$
     \STATE $\alpha = 1000$
-    \STATE $\beta = (\frac{\alpha}{\pi})^{\frac{3}{2}} \cdot \text{Charge}_I$
+    \STATE $\beta = (\frac{\alpha}{\pi})^{\frac{3}{2}} \cdot Z_I$
     \STATE $\rvec_I(\rvec) =$ Nuclear coordinate$_I$
-    \STATE $\rho_{nuc} = 0$
-    \FOR{All coordinates and charges $I$}
-    \STATE $\rho_{nuc}^{(I)}(\rvec) = \beta e^{-\alpha\cdot\lVert\rvec -\rvec_I\rVert^2}$
+    \STATE Set $\rho_{nuc} = 0$
+    \FOR{All nuclei $I$}
+    \STATE $\rho_{I}(\rvec) = \beta e^{-\alpha\cdot\lVert\rvec -\rvec_I\rVert^2}$
     \STATE $\rho_{nuc(\rvec)} = \rho_{nuc(\rvec)} + \rho_{nuc}^{(I)}(\rvec)$
     \ENDFOR
     \RETURN $\rho_{nuc}(\rvec)$
@@ -92,8 +97,6 @@ each nucleus.
 Where $\alpha$ represents the width of the Gaussian function, $\beta$ is the normalization
 constant multiplied with the charge, $\rvec_I$ is the position of the nucleus and
 $\rho_{nuc}^{(I)}$ is the Gaussian representing the a point charge at the nucleus.
-The algorithm \ref{alg:rhonuc} describes the set of nuclei as a sum of different point charges
-represented as Gaussian functions.
 
 We then go on to create the effective volume charge distribution by the following equation.
 \begin{align}
@@ -106,6 +109,8 @@ the subtraction of $U_{vac}$ to it from the start \cite{FossoTande:2013ka}. This
 way we will be solving directly for the reaction field potential $U_r$.
 The alternative is to instead compute the total potential $U$ and then subtract
 the gas phase potential to get the Reaction potential as in \cite{FossoTande:2013ka}.
+Calculating the Reaction potential with the latter method brings loss of accuracy
+by adding numerical noise.
 
 \subsection{Surface Charge distribution}
 Given the total interaction potential of $U$ of a solvation system with
@@ -114,21 +119,21 @@ $\gamma_s$ as shown in algorithm \ref{alg:gamma}.
 \begin{algorithm}
   \caption{Surface charge distribution}\label{alg:gamma}
   \begin{algorithmic}
-    \STATE $\gamma_s[U, epsilon[C]]$:
+    \STATE $\gamma_s[U, \epsilon[C]]$:
     \STATE \textbf{Input :} $U$ potential, $\epsilon[C]$ dielectric function
     \IF{$\epsilon$ is exponential}
       \STATE $k = \frac{1}{4\pi}\log\frac{\epso}{\epsinf}$
       \RETURN $k \nabla C \cdot \nabla U$
     \ELSIF{$\epsilon$ is linear}
-      \STATE $k = \frac{1}{4\pi}\epso-\epsinf$
+      \STATE $k = \frac{1}{4\pi}(\epso-\epsinf)$
       \RETURN $\frac{k}{\epsilon} \nabla C \cdot \nabla U$
     \ENDIF
   \end{algorithmic}
 \end{algorithm}
 
-Here we use the definition of the log derivative for both $\epslin$ and $\epsexp$
+In algorithm \ref{alg:gamma} we use the definition of the log derivative for both $\epslin$ and $\epsexp$
 from equations \ref{eq:logderepsexp} and \ref{eq:logderepslin}. This is the same
-as just writing $$\gamma_s = \frac{1}{4\pi}\frac{\nabla\epsilon\nabla U}{\epsilon}$$,
+as just writing $$\gamma_s = \frac{1}{4\pi}\frac{\nabla\epsilon\nabla U}{\epsilon},$$
 which is the same equation as in \ref{eq:effrhogamma}.
 
 \subsection{The iterative \ac{SCRF} method}
@@ -154,24 +159,24 @@ Algorithm \ref{alg:Reactionfield}.
   \caption{\ac{SCRF} iterative method}\label{alg:Reactionfield}
   \begin{algorithmic}
     \STATE \underline{\textbf{Zeroth iteration:}}
-    \STATE $U_{vac} = \hat{\mathscr{P}}(\rho_{tot})$
-    \STATE $\gamma_s^{(0)} = \gamma_s\big[U_{vac}, \epsilon\big]$
-    \STATE $U_r^{(1)} = \hat{\mathscr{P}}(\rho_{eff} + \gamma_s^{(0)})$
+    \STATE $U_{vac} \leftarrow \hat{\mathscr{P}}(\rho_{tot})$
+    \STATE $\gamma_s^{(0)} \leftarrow \gamma_s\big[U_{vac}, \epsilon\big]$
+    \STATE $U_r^{(1)} \leftarrow \hat{\mathscr{P}}(\rho_{eff} + \gamma_s^{(0)})$
     \STATE \underline{\textbf{n-th iteration:}}
     \STATE \textbf{Input :} precision
     \STATE error = 10
     \WHILE{error $\geqslant$ precision}
-      \STATE $\gamma_s^{(n)} = \gamma_s\big[(U_{vac}+ U_r^{(n)}), \epsilon\big]$
-      \STATE $U_r^{(n+1)} = \hat{\mathscr{P}} (\rho_{eff} + \gamma_s^{(n)})$
+      \STATE $\gamma_s^{(n)} \leftarrow \gamma_s\big[(U_{vac}+ U_r^{(n)}), \epsilon\big]$
+      \STATE $U_r^{(n+1)} \leftarrow \hat{\mathscr{P}} (\rho_{eff} + \gamma_s^{(n)})$
       \STATE error = $\lVert U_r^{(n+1)} - U_r^{(n)} \rVert$
-      \STATE $U_r^{(n)} = U_r^{(n+1)}$
+      \STATE $U_r^{(n)} \leftarrow U_r^{(n+1)}$
     \ENDWHILE
     \RETURN $U_r^{(n)}$
   \end{algorithmic}
 \end{algorithm}
-The \ac{SCRF} can then be implemented by itself or in-between every normal
-\ac{SCF} cycle. The converged Reaction potential for water in a water solvent
-can be seen in Figure \ref{fig:watpots}.
+The \ac{SCRF} can then be implemented by itself inside a \ac{SCF} cycle.
+The converged Reaction potential for water in a water solvent can be seen in
+Figure \ref{fig:watpots}.
 
 \begin{figure}[h!]
   \centering
@@ -210,32 +215,26 @@ This is outlined in algorithm \ref{alg:Reactionfieldvar}.
   \begin{algorithmic}
     \STATE \underline{\textbf{Zeroth step:}}
     \STATE Do The iterative \ac{SCRF} $\rightarrow U_r^{(converged)}$
-    \STATE $\gamma_s^{(n+1)} = \gamma_s\big[(U_{vac}+ U_r^{(converged)}), \epsilon\big]$
+    \STATE $\gamma_s^{(n+1)} \leftarrow \gamma_s\big[(U_{vac}+ U_r^{(converged)}), \epsilon\big]$
     \STATE \underline{\textbf{n-th step:}}
-    \FOR{Every \ac{SCF} cycle do:}
-      \STATE $\gamma_s^{(n)} =\gamma_s^{(n+1)}$
-      \STATE $U_r^{(n)} = \hat{\mathscr{P}} (\rho_{eff} + \gamma_s^{(n)})$
-      \STATE $\gamma_s^{(n+1)} = \gamma_s\big[(U_{vac}+ U_r^{(n)}), \epsilon\big]$
-      \STATE $U_r^{(n)} = U_r^{(n+1)}$
-      \STATE $\gamma_s^{(n+1)} = \gamma_s\big[(U_{vac}+ U_r^{(converged)}), \epsilon\big]$
-      \STATE Accelerator[$\gamma_s^{(n)}, \gamma_s^{(n+1)}] \rightarrow \gamma_s^{(n+1)\prime}$
-      \STATE $\gamma_s^{(n+1)} =\gamma_s^{(n+1)\prime}$
-    \ENDFOR
+    \STATE \textbf{On every SCF cycle do}
+    \STATE $\gamma_s^{(n)} \leftarrow \gamma_s^{(n+1)}$
+    \STATE $U_r^{(n+1)} \leftarrow \hat{\mathscr{P}} (\rho_{eff} + \gamma_s^{(n)})$
+    \STATE $U_r^{(n)} \leftarrow U_r^{(n+1)}$
+    \STATE $\gamma_s^{(n+1)} \leftarrow \gamma_s\big[(U_{vac}+ U_r^{(n)}), \epsilon\big]$
+    \STATE Accelerator[$\gamma_s^{(n)}, \gamma_s^{(n+1)}] \rightarrow \gamma_s^{(n+1)\prime}$
+    \STATE $\gamma_s^{(n+1)} \leftarrow\gamma_s^{(n+1)\prime}$
   \end{algorithmic}
 \end{algorithm}
 Where $\gamma_s^{(n+1)\prime}$ is an optimized $\gamma_s^{(n+1)}$ which is used
 in the next iteration. The first Iterative \ac{SCRF} was done so that we would
 start the Optimizing of the potential with an already good guess.
 \section{Software used}
-The problem was first implemented in Vampyr %cite and get the right font
-which is a python %
-Then it was implemented in C++ using \mrchem %cite and get the right font
+The problem was first implemented in VAMPYR \cite{Vampyr} which is a python interface to the
+MRCPP \cite{MRCPP} code.  Then it was implemented in C++ using \mrchem \cite{MRchem}. All of the above softawares
+are \ac{MW} software developed at Hylleraas centre of Quantum molecular sciences.
 Both implementations are identical, except for slight changes for
-performance improvement, such as a KAIN accelerator, %cite and correct font
-iterating through $U_r$ instead of $U_{tot}$ % more explanation on this in previous or this section
-and keeping the potential from cycle to cycle
-in the c++ version of the model.
-
+performance improvement, such as using a KAIN accelerator, 
 
 \input{acronyms.tex}
 \biblio
