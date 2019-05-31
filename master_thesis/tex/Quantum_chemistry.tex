@@ -15,8 +15,8 @@ as 5) \cite{Atkins:2011, Cohen:1973}.
 \subsubsection{First Postulate}
 The first postulate states that everything we can know about a physical system
 can be extracted from the wave function $\Psi(x, t)$ of that system
-\cite{Atkins:2011}. Additionally at a time $t_0$ the system is defined by
-a state vector (or wave function) $\ket{\Psi(t_0)}\in L^2$ that has a defined
+\cite{Atkins:2011}. The wave function is defined as a function vector, or
+state vector, $\ket{\Psi(t_0)}\in L^2$ that has a defined
 finite scalar product as shown in Equation \ref{eq:diracproduc} \cite{Cohen:1973}
 
 \subsubsection{Second Postulate}
@@ -37,7 +37,7 @@ The Operators that represent observables are linear and Hermitian.
 
 \subsubsection{Third Postulate}
 When measuring an observable $O$ on a system $\ket{\Psi}$, the only possible
-values of the observable are eigenvalues of the corresponding operator $\hat{O}$
+values of the measurement are eigenvalues of the corresponding operator $\hat{O}$
 onto the measured system $\Psi$ at its current state $\ket{\Psi_i}$. The eigenvalues
 are solutions to the following equation \cite{Cohen:1973}
 \begin{equation}
@@ -184,9 +184,10 @@ This system has an analytical solution in which one follows these steps:
   functions $\Theta(\theta)$ and $\Phi(\phi)$.
   \item Solve as three sets of differential equations \cite{Simons:2016}.
 \end{enumerate}
-Following the steps above, the two-particle system is analytically solvable when
+Following the steps above, the two-particle system is analytically solvable for
+the center of mass and angular motion when
 the potential energy is defined as function of only the distance between the
-nucleus and the electron.
+nucleus and the electron. Examples are the harmonic oscillator and the Coulomb potential.
 
 \section{Many-body systems}
 
@@ -249,7 +250,7 @@ the nuclei \cite{Jensen:2017}
 \begin{equation}
   \hat{H}(\rvec, \vec{R}) = \hat{T}_e + \hat{T}_N + \hat{V}_{Ne} +\hat{V}_{NN} + \hat{V}_{ee}
 \end{equation}
-We can see that both repulsion potentials $\hat{V}_{NN}, \hat{V}_{ee}$ have $(N - 1)$ and $(n - 1)$ terms
+We can see that both repulsion potentials $\hat{V}_{NN}, \hat{V}_{ee}$ have $\frac{N(N - 1)}{2}$ and $\frac{n(n - 1)}{2}$ terms
  respectively, while the other terms have much simpler sums {sums over one index in the case of the
 kinetic energies and $N\cdot n$ terms in the attraction potential $\hat{V}_{Ne}$}.
 
@@ -279,8 +280,8 @@ The electronic \ac{SE} is as follows
 Where the electronic energy $E_e$ becomes a function of $\vec{R}$ which is solved as
 a constant for each nuclear geometry. In the electronic Hamiltonian
 we assume that the kinetic energy of the nuclei is zero, but we still need to
-compute the nuclear repulsion $V_{NN}$, but as we are solving for any given geometry at a time
-we can safely assume that it is a constant \cite{Cramer:2004}. The electron
+compute the nuclear repulsion $V_{NN}$, but as we are solving for any given geometry
+ it becomes a constant \cite{Cramer:2004}. The electron
 Hamiltonian $\hat{H}_e$ is as follows
 \begin{equation}\label{eq:elhamiltonian}
     \hat{H}_e(\rvec; \vec{R}) = \hat{T}_e + \hat{V}_{Ne} + \hat{V}_{ee}  + \hat{V}_{NN}
@@ -360,10 +361,10 @@ minimize them as in the variational principle. This is done with an iterative
 procedure called the \ac{SCF}.
 
 \subsubsection{Slater determinant}
-The electron wave function seen in section \ref{BO} needs to include all the
+The electronic wave function seen in section \ref{BO} needs to include all the
 coordinates that identify an electron. These properties are the spatial coordinates
 $x, y, z$, and the spin coordinate $s$. Another characteristic is that
-it needs to be antisymmetric, that is it must change sign whenever the coordinates
+it needs to be anti-symmetric, that is it must change sign whenever the coordinates
 of two electrons, spatial and spin, are interchanged.
 
 The characteristics stated above can be summarized by writing the wave function as
@@ -382,7 +383,7 @@ a product of a spatial function and a spin function\cite{Jensen:1999}, $n$ is th
 electrons, the coefficient outside the determinant is a normalization constant
 and each of the spin orbitals are orthonormal to each other.
 
-In a Slater determinant each of the columns represent a spinorbital each and the rows the electron coordinates.
+In a Slater determinant each column represent a spinorbital and each row one electron.
 The spatial orbitals can, and are mostly, built using a basis set as decribed in
 Equation \ref{eq:lincomb}. The spin functions are orthonormal eigenfunctions of the operator $\hat{S}_z$
 and have only two eigenvalues $\pm \frac{\hbar}{2}$ \cite{Cramer:2004}.
@@ -412,8 +413,9 @@ orbital $\phi_j$.
 
 \subsubsection{Variational principle on a Slater determinant}
 
-The reason for writing the energy of a Slater determinant as we did above in \ref{eq:SD}
-is so that we could apply the variational principle on the wave function. We
+The energy of a Slater determinant, defined in \ref{eq:SD}, can be minimized with
+respect to the orbitals  variations under the constraint that the occupied
+orbitals stay orthonormal \cite{Jensen:2017}. We
 construct a Lagrange equation as in \cite{Jensen:1999}:
 \begin{align}
   L &= E - \sumdef{ij}\lambda_{ij}\left(\braket{\phi_i|\phi_j} - \delta_{ij} \right) \\
@@ -427,7 +429,7 @@ where
     &+ \frac{1}{2}\sumdef[n]{ij}\left(\braket{\delta\phi_j|\hat{J}_i - \hat{K}_i|\phi_j} + \braket{\phi_j|\hat{J}_i - \hat{K}_i|\delta\phi_j}\right)
   \end{split}
 \end{align}
-and  $\lambda$ is the Lagrange multiplier.
+and  $\lambda_{ij}$ is the Lagrange multiplier.
 The goal is to find a set of orbitals that give us a minimum of the Lagrange
 equation $\delta L = 0$.
 \subsubsection{Hartree--Fock equations}
@@ -485,7 +487,7 @@ wave function of the other electrons.
 Using a slightly different method, we calculate the energy directly as a functional
 of the electron density distribution \cite{Sorland, Cramer:2004} described by
 \begin{equation}\label{eq:densityintegral}
-  \rho(\rvec) = n \int\abs{\Psi_e(\rvec, \rvec_1, \rvec_2,..., \rvec_n)} \text{d}\rvec_1\text{d}\rvec_2...\text{d}\rvec_n
+  \rho(\rvec) = n \int\abs{\Psi_e(\rvec, \rvec_2,..., \rvec_n)} \text{d}\rvec_2...\text{d}\rvec_n
 \end{equation}
 which is an integral over all the possible configurations of the electrons. The
 coefficient $n$ is the total amount of electrons on the system. This method,
@@ -549,8 +551,8 @@ get the correct density for the system of interacting electrons \cite{Cramer:200
 
 This tells us that, given a set of basis functions $\phi$ describing
 $\rho$ as defined in Equation \ref{eq:densityintegral}, we can compute the following
-Kohn--Sham  matrix elements $\bar{K}_{\mu\nu}$ for a secular equation resembling that of the \ac{HF}
-method. In this secular equation the elements $\bar{F}_{\mu\nu}$ are replaced by $\bar{K}_{\mu\nu}$.
+Kohn--Sham  matrix elements $\bar{K}_{\mu\nu}$ for a set of equations resembling that of the \ac{HF}
+method. In this set of equations the elements $\bar{F}_{\mu\nu}$ are replaced by $\bar{K}_{\mu\nu}$.
 \begin{equation}
   \bar{K}_{\mu\nu} = \braket{\phi_\mu|\left[- \frac{1}{2}\nabla^2_i + v_{Ne} + v_e(\rho) + V_{xc}\right]|\phi_\nu}
 \end{equation}

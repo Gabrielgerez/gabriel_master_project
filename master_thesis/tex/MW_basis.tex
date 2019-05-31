@@ -66,8 +66,9 @@ longer constrained to a spherical coordinate system and can be evaluated on Cart
 coordinates. They are also separable in the Cartesian coordinate system as a product of
 one variable Gaussians.
 
-On the other hand, the \ac{GTO} decay too fast in comparison to the \ac{STO},
-meaning that we have to make more considerations to the exponents and possibly have more
+On the other hand, the \ac{GTO} decay too fast in comparison to the \ac{STO} and
+do not describe the nucleus cusp correctly either, meaning that we have to make
+more considerations to the exponents and possibly have more
 functions per atom in order to find better solutions.
 
 \subsubsection{Contracted Gaussian-type orbitals}
@@ -75,17 +76,24 @@ In order to diminish the problem of the cusp in \ac{STO} one tries to represent 
 \ac{STO} as linear combinations of \acp{GTO}. This way the decay is properly modeled and the
 cusp is no longer a difficult problem to solve. This has the obvious weakness of needing
 to compute more basis functions for a single orbital, which increases the cost of running
-the calculations \cite{Cramer:2004}. %did i misunderstand?
+the calculations \cite{Cramer:2004}. In order to removee this we define the \acp{GTO}
+as bein represented by another linear combination of \acp{GTO}, but the coefficients for
+this one are known and static. This way we can have a better representation of \acp{STO}
+with \acp{GTO} \cite{Jensen:2017}.
 
 \subsection{Periodic basis sets}
 Periodic basis sets are a type of basis sets that are not centered on an atom.
 These basis sets are best at describing, as the name implies, systems with periodic
-boundary conditions.
+boundary conditions. Two examples are metals and ion crystals.
 
 \subsubsection{Plane wave basis functions}
 In metals, one can think of the valence electrons as free electrons with
 periodic boundary conditions. The wave functions of these type of systems are
 described by either complex exponentials or cosine and sine functions \cite{Jensen:2017}.
+
+On infinite systems the molecular orbitals, due to the space between different energy levels
+vanishing, can be described by a basis of plane waves. The definition in three dimensions
+is then a complex exponential.
 
 To finish this section on basis sets we can comment on the applicability of these
 basis sets. Atom based basis sets are best at describing the electrons nearest the
@@ -94,9 +102,10 @@ harder to differentiate, therefore, \ac{GTO} basis sets are used to simplify the
 near nucleus differentiation. \acp{GTO} do not decay in the correct manner so one
 might want to use contracted \acp{GTO}.
 
-Periodic basis sets are best at valence electrons, specially in metals where they
-behave almost as free electrons. These types of basis sets are not as good at describing
-the electrons closer to the nuclei.
+Plane wave functions excel at describing slowly varying delocalized electron densities.
+An example is the valence and conduction bands in metal. They are not that good at
+describing internal electrons, where the oscillation frequency near the nuclei need to increase a lot
+in order to properly approximate the orbital \cite{Jensen:2017}.
 
 \section{Multi-resolution analysis}
 \subsection{Definition}
@@ -613,18 +622,16 @@ d r^{\prime},
 which is a simplified version of the Poisson kernel shown in \cite{Frediani:2013}.
 The Poisson operator can be projected as is outlined in section \ref{NSformsec} above.
 
-\section{Hartree-Fock method in multiwavelet basis}
+\section{\ac{SCF} method in multiwavelet basis}
 When performing the \ac{SCF} mentioned in chapter \ref{chap:Quantum_chemistry} one
 computes the sets of one-orbital eigenfunctions from Equation \ref{eq:diagFockequations}.
 Let us expand that equation into its single kinetic and potential energy contributions
 \begin{equation}\label{eq:expandeddiagFockequations}
   \left(\hat{T} + \hat{V_n} + \hat{J} - \hat{K} + \hat{V}_{xc}\right)\phi_i = \epsilon_i\phi_i,
 \end{equation}
-where $\hat{V}_{xc}$ is the exchange-correlation potential, which is a correction of the Hartree-Fock
-approximation where we assumed that only one Slater determinant was needed for
-constructing the wavefunction. We will not dwell on it much more and
-assume it is known. Here we drop the $\prime$ as we are only working with a diagonalized Fock matrix
-in the following definitions.
+where $\hat{V}_{xc}$ is the exchange-correlation potential, which is part of the
+\ac{DFT} \ac{SCF} and can be removed for \ac{HF}
+We will not dwell on it much more and assume it is known.
 
 The kinetic energy operator $\hat{T}$ from Equation \ref{eq:expandeddiagFockequations}
 consists of a double derivative. We saw from the previous section on operators
