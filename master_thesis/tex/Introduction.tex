@@ -23,8 +23,11 @@ characteristics for development of solutions of partial differential equations.
 These are orthogonality of wavelet spaces, vanishing moments and locally adaptive
 representations of functions, which allow for further refining critical areas of a system.
 
-
 \section{Summary of Results}
+The main goal with this project was to have a working implementation of solvent
+effect in \ac{MW} basis by following in Fosso--tande's footsteps \cite{FossoTande:2013ka}.
+Another objective was to implement a variational formulation of the \ac{GPE}
+as defined in \cite{Lipparini:2010bg}.
 
 We found that the implementation managed to produce values that did not differ
 significantly from exact calculations of the properties tested, these being the Born energy of
@@ -33,6 +36,8 @@ The Energy calculations yielded results that converged towards Gaussian results
 as the radii increased. We also tested the Variational formulation of the
 \ac{GPE} shown in \cite{Lipparini:2010bg}, which gave promising results for
 small systems, such as \ce{Li^+}, but showed room for improvement for bigger systems.
+
+
 
 \section{Structure of thesis}
 In chapter \ref{chap:Quantum_chemistry} of this thesis we will present the quantum
