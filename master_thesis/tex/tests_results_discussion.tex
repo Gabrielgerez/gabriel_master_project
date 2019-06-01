@@ -147,28 +147,28 @@ We first varied the radius of the cavity for \ce{H_2O} and lithium. The followin
 Table \ref{tab:rawwaterdata}  presents the data for the energy
 calculations of \ce{H_2O} with the three first cavity radii used in the calculations
 These are the total  energy of the system including the solvent effect contributions.
-\begin{table}[!htbp]
-  \caption[$E_{tot}$ for \ce{H_2O} in Water sample]{Total Energy Calculations example for \ce{H_2O} in Water. Energy in Hartree and radii of the cavity in Bohr}
-  \begin{center}
-    \begin{tabular}{l|r|r|r}
-      Basis & $R =3.6$ & $R=3.7$ & $R=3.8$ \\  \hline
-      cc-pVDZ & -7.6039e+01 & -7.6038e+01 & -7.6036e+01 \\
-      cc-pVTZ & -7.6070e+01 & -7.6069e+01 & -7.6067e+01 \\
-      cc-pVQZ & -7.6078e+01 & -7.6076e+01 & -7.6075e+01 \\
-      cc-pV5Z & -7.6080e+01 & -7.6079e+01 & -7.6077e+01 \\\hline
-      aug-cc-pVDZ & -7.6054e+01 & -7.6053e+01 & -7.6052e+01 \\
-      aug-cc-pVTZ & -7.6074e+01 & -7.6072e+01 & -7.6071e+01 \\
-      aug-cc-pVQZ & -7.6079e+01 & -7.6077e+01 & -7.6076e+01 \\
-      aug-cc-pV5Z & -7.6080e+01 & -7.6079e+01 & -7.6077e+01 \\\hline
-      daug-cc-pVDZ & -7.6055e+01 & -7.6053e+01 & -7.6052e+01 \\
-      daug-cc-pVTZ & -7.6074e+01 & -7.6072e+01 & -7.6071e+01 \\
-      daug-cc-pVQZ & -7.6079e+01 & -7.6077e+01 & -7.6076e+01 \\
-      daug-cc-pV5Z & -7.6080e+01 & -7.6079e+01 & -7.6077e+01 \\\hline
-      \mrchem & -7.6085E+01 & -7.6083E+01 & -7.6081E+01 \\
-    \end{tabular}
-  \end{center}
-  \label{tab:rawwaterdata}
+
+\begin{table}[htbp]
+\caption[$E_{tot}$ for \ce{H_2O} in Water sample]{Total Energy Calculations example for \ce{H_2O} in Water. Energy in Hartree and radii of the cavity in Bohr}
+\begin{tabular}{l|r|r|r|r}
+Basis & \multicolumn{1}{l|}{vacuum E} & 3.6 & 3.7 & 3.8 \\ \hline
+cc-pVDZ & -76.02663793 & -76.03908811 & -76.03763579 & -76.03641832 \\
+cc-pVTZ & -76.05697112 & -76.07006812 & -76.06851635 & -76.06721439 \\
+cc-pVQZ & -76.06463074 & -76.07784858 & -76.07628127 & -76.07496499 \\
+cc-pV5Z & -76.06688831 & -76.08017253 & -76.07860146 & -76.07728122 \\ \hline
+aug-cc-pVDZ & -76.04126545 & -76.05445572 & -76.05289986 & -76.05159320 \\
+aug-cc-pVTZ & -76.06042913 & -76.07366704 & -76.07209913 & -76.07078170 \\
+aug-cc-pVQZ & -76.06580140 & -76.07902254 & -76.07745594 & -76.07613970 \\
+aug-cc-pV5Z & -76.06711902 & -76.08034209 & -76.07877365 & -76.07745617 \\ \hline
+daug-cc-pVDZ & -76.04174340 & -76.05497166 & -76.05340824 & -76.05209489 \\
+daug-cc-pVTZ & -76.06052322 & -76.07376602 & -76.07219809 & -76.07088031 \\
+daug-cc-pVQZ & -76.06582414 & -76.07904691 & -76.07748036 & -76.07616414 \\
+daug-cc-pV5Z & -76.06712250 & -76.08034610 & -76.07877753 & -76.07745995 \\ \hline
+mrchem & -76.06728320 & -76.08531969 & -76.08277751 & -76.08071980 \\
+\end{tabular}
+\label{tab:rawwaterdata}
 \end{table}
+
 
 To calculate the reaction field energy we took a gas phase calculation
 of a basis set and subtracted it from the total energy calculated with the same
@@ -181,28 +181,28 @@ calculate the reaction field Energy $E_r$
 Examples of $E_r$ for the first three cavity radii for \ce{H_2O} obtained from the operation
 in Equation \ref{eq:deltaer} can be seen in Table \ref{tab:Erwatdata}
 
-\begin{table}[!htbp]
-\caption[$E_r$ for \ce{H_2O} in Water sample]{Reaction Field Energy Calculations example for \ce{H_2O} in water, Energy in Hartree and radii of the cavity in Bohr}
-\begin{center}
-\begin{tabular}{l|r|r|r|r}
-Basis & 3.6 & 3.7 & 3.8 \\\hline
-cc-pVDZ & -1.2450E-02 & -1.0998E-02 & -9.7804E-03 \\
-cc-pVTZ & -1.3097E-02 & -1.1545E-02 & -1.0243E-02 \\
-cc-pVQZ & -1.3218E-02 & -1.1651E-02 & -1.0334E-02 \\
-cc-pV5Z & -1.3284E-02 & -1.1713E-02 & -1.0393E-02 \\\hline
-aug-cc-pVDZ & -1.3190E-02 & -1.1634E-02 & -1.0328E-02 \\
-aug-cc-pVTZ & -1.3238E-02 & -1.1670E-02 & -1.0353E-02 \\
-aug-cc-pVQZ & -1.3221E-02 & -1.1655E-02 & -1.0338E-02 \\
-aug-cc-pV5Z & -1.3223E-02 & -1.1655E-02 & -1.0337E-02 \\\hline
-daug-cc-pVDZ & -1.3228E-02 & -1.1665E-02 & -1.0351E-02 \\
-daug-cc-pVTZ & -1.3243E-02 & -1.1675E-02 & -1.0357E-02 \\
-daug-cc-pVQZ & -1.3223E-02 & -1.1656E-02 & -1.0340E-02 \\
-daug-cc-pV5Z & -1.3224E-02 & -1.1655E-02 & -1.0337E-02 \\\hline
-\mrchem & -1.8036E-02 & -1.5494E-02 & -1.3437E-02 \\
+\begin{table}[htbp]
+\caption{[$E_r$ for \ce{H_2O} in Water sample]{Reaction Field Energy Calculations example for \ce{H_2O} in water, Energy in Hartree and radii of the cavity in Bohr}}
+\begin{tabular}{|l|r|r|r|}
+basis & 3.6 & 3.7 & 3.8 \\ \hline
+cc-pVDZ & -0.01245017 & -0.01099786 & -0.00978039 \\
+cc-pVTZ & -0.01309700 & -0.01154523 & -0.01024327 \\
+cc-pVQZ & -0.01321784 & -0.01165053 & -0.01033425 \\
+cc-pV5Z & -0.01328422 & -0.01171314 & -0.01039291 \\ \hline
+aug-cc-pVDZ & -0.01319027 & -0.01163442 & -0.01032775 \\
+aug-cc-pVTZ & -0.01323791 & -0.01167000 & -0.01035257 \\
+aug-cc-pVQZ & -0.01322114 & -0.01165454 & -0.01033831 \\
+aug-cc-pV5Z & -0.01322306 & -0.01165463 & -0.01033715 \\ \hline
+daug-cc-pVDZ & -0.01322826 & -0.01166484 & -0.01035150 \\
+daug-cc-pVTZ & -0.01324280 & -0.01167487 & -0.01035709 \\
+daug-cc-pVQZ & -0.01322276 & -0.01165622 & -0.01033999 \\
+daug-cc-pV5Z & -0.01322360 & -0.01165503 & -0.01033745 \\ \hline
+mrchem & -0.01803648 & -0.01549431 & -0.01343659 \\
 \end{tabular}
-\end{center}
 \label{tab:Erwatdata}
 \end{table}
+
+
  The Tables \ref{tab:rawwaterdata} and \ref{tab:Erwatdata} do not show the total
  amount of results that were used to plot the Energies. The results for the remaining
  radii can be seen in Appendix \ref{Datatables}.
@@ -306,7 +306,7 @@ the results with relative precision $1e(-3)$ are over five times larger than the
     \includegraphics[width=\linewidth]{img/lipprecallreldiffexcl.png}
     \caption{All precision values plotted, except for precision value $1e-03$}
   \end{subfigure}
-  \caption[Relative difference of \ce{Li^+} with different precision values against Gaussian results]{Relative difference between the reaction field energy of \ce{Li^+} in a water solution calculated with different relative precisions in \mrchem  and same calculations in Gaussian with daug-cc-pV5Z}
+  \caption[Relative difference of \ce{Li^+} with varied precision against Gaussian results]{Relative difference between the reaction field energy of \ce{Li^+} in a water solution calculated with different relative precisions in \mrchem  and same calculations in Gaussian with daug-cc-pV5Z}
   \label{fig:lipprecreldef}
 \end{figure}
 \clearpage
@@ -388,19 +388,19 @@ tables see Appendix \ref{Datatables}.
 \begin{table}[htbp]
 \caption[Relative difference between Gaussian and \mrchem results for \ce{H_2O}]{Relative difference between Gaussian and \mrchem results from molecular-shaped cavity  tests for \ce{H_2O}}
 \begin{tabular}{l|r|r}
-Basis & \multicolumn{1}{l|}{Van der Waals radii} & \multicolumn{1}{l|}{Van der Waals radii $+ 0.2$ Bohr} \\ \hline
-cc-pVDZ & -0.150906543613473 & 0.04037455582641 \\
-cc-pVTZ & -0.128295351717092 & 0.068079525814065 \\
-cc-pVQZ & -0.128952645914318 & 0.067274158450387 \\
-cc-pV5Z & -0.129254059406514 & 0.06690484347604 \\
-aug-cc-pVDZ & -0.129130316675487 & 0.067056462579757 \\
-aug-cc-pVTZ & -0.13428775618655 & 0.060737171340182 \\
-aug-cc-pVQZ & -0.136838481699814 & 0.057611826417386 \\
-aug-cc-pV5Z & -0.136314953280292 & 0.058253293670285 \\
-daug-cc-pVDZ & -0.128163492341192 & 0.068241090054846 \\
-daug-cc-pVTZ & -0.133787441562786 & 0.061350195266532 \\
-daug-cc-pVQZ & -0.136489745183211 & 0.058039125198024 \\
-daug-cc-pV5Z & -0.136235086647359 & 0.058351152406726 \\
+basis & \multicolumn{1}{l|}{Van der Waals} & \multicolumn{1}{l|}{Van der Waals + 0.2 Bohr} \\ \hline
+cc-pVDZ & -0.15090654 & 0.04037456 \\
+cc-pVTZ & -0.12829535 & 0.06807953 \\
+cc-pVQZ & -0.12895265 & 0.06727416 \\
+cc-pV5Z & -0.12925406 & 0.06690484 \\ \hline
+aug-cc-pVDZ & -0.12913032 & 0.06705646 \\
+aug-cc-pVTZ & -0.13428776 & 0.06073717 \\
+aug-cc-pVQZ & -0.13683848 & 0.05761183 \\
+aug-cc-pV5Z & -0.13631495 & 0.05825329 \\ \hline
+daug-cc-pVDZ & -0.12816349 & 0.06824109 \\
+daug-cc-pVTZ & -0.13378744 & 0.06135020 \\
+daug-cc-pVQZ & -0.13648975 & 0.05803913 \\
+daug-cc-pV5Z & -0.13623509 & 0.05835115 \\
 \end{tabular}
 \label{tab:watabcreldiff}
 \end{table}
@@ -413,11 +413,11 @@ Basis & \multicolumn{1}{l|}{Van der Waals radii} & \multicolumn{1}{l|}{Van der W
 cc-pVDZ & -0.03598423 & 0.02044325 \\
 cc-pVTZ & -0.03692221 & 0.01945037 \\
 cc-pVQZ & -0.03747002 & 0.01887050 \\
-cc-pV5Z & -0.03810456 & 0.01819881 \\
+cc-pV5Z & -0.03810456 & 0.01819881 \\\hline
 aug-cc-pVDZ & -0.03906862 & 0.01717832 \\
 aug-cc-pVTZ & -0.03801963 & 0.01828871 \\
 aug-cc-pVQZ & -0.03792710 & 0.01838665 \\
-aug-cc-pV5Z & -0.03814585 & 0.01815510 \\
+aug-cc-pV5Z & -0.03814585 & 0.01815510 \\\hline
 daug-cc-pVDZ & -0.03897379 & 0.01727870 \\
 daug-cc-pVTZ & -0.03811073 & 0.01819228 \\
 daug-cc-pVQZ & -0.03799786 & 0.01831176 \\
@@ -434,11 +434,11 @@ Basis & \multicolumn{1}{l|}{Van der Waals radii} \\ \hline
 cc-pVDZ & 0.01805797 \\
 cc-pVTZ & 0.00402722 \\
 cc-pVQZ & -0.00689520 \\
-cc-pV5Z & -0.01760704 \\
+cc-pV5Z & -0.01760704 \\\hline
 aug-cc-pVDZ & -0.02534307 \\
 aug-cc-pVTZ & -0.02484616 \\
 aug-cc-pVQZ & -0.02473155 \\
-aug-cc-pV5Z & -0.02453156 \\
+aug-cc-pV5Z & -0.02453156 \\\hline
 daug-cc-pVDZ & -0.02428967 \\
 daug-cc-pVTZ & -0.02475331 \\
 daug-cc-pVQZ & -0.02472359 \\
@@ -450,18 +450,18 @@ daug-cc-pV5Z & -0.02449823 \\
 \begin{table}[htbp]
 \caption[Relative difference between Gaussian and \mrchem results for \ce{CH_3CONH_2}]{Relative difference between Gaussian and \mrchem results from molecular-shaped cavity  test for \ce{CH_3CONH_2}}
 \begin{tabular}{l|r|r}
-Basis & \multicolumn{1}{l|}{Van der Waals radii} & \multicolumn{1}{l|}{Van der Waals radii$+0.2$ Bohr} \\ \hline
-cc-pVDZ & -0.186177328600554 & -0.025757341450533 \\
-cc-pVTZ & -0.13954657945224 & 0.030065218693051 \\
-cc-pVQZ & -0.12431319516031 & 0.048301393885559 \\
-cc-pV5Z & -0.12131273376434 & 0.051893303511593 \\
-aug-cc-pVDZ & -0.113966441504817 & 0.060687690240943 \\
-aug-cc-pVTZ & -0.120388767462925 & 0.052999401212647 \\
-aug-cc-pVQZ & -0.122585402181545 & 0.050369767849829 \\
-aug-cc-pV5Z & -0.122435027608944 & 0.050549784121847 \\
-daug-cc-pVDZ & -0.117198265984418 & 0.056818811449993 \\
-daug-cc-pVTZ & -0.121288328616877 & 0.051922519379598 \\
-daug-cc-pVQZ & -0.122478065257119 & 0.050498262931483 \\
+basis & \multicolumn{1}{l|}{vdw} & \multicolumn{1}{l|}{Vdw+0.2} \\ \hline
+cc-pVDZ & -0.18617733 & -0.02575734 \\
+cc-pVTZ & -0.13954658 & 0.03006522 \\
+cc-pVQZ & -0.12431320 & 0.04830139 \\
+cc-pV5Z & -0.12131273 & 0.05189330 \\ \hline
+aug-cc-pVDZ & -0.11396644 & 0.06068769 \\
+aug-cc-pVTZ & -0.12038877 & 0.05299940 \\
+aug-cc-pVQZ & -0.12258540 & 0.05036977 \\
+aug-cc-pV5Z & -0.12243503 & 0.05054978 \\ \hline
+daug-cc-pVDZ & -0.11719827 & 0.05681881 \\
+daug-cc-pVTZ & -0.12128833 & 0.05192252 \\
+daug-cc-pVQZ & -0.12247807 & 0.05049826 \\
 \end{tabular}
 \label{tab:acetamidabcreldiff}
 \end{table}
@@ -499,7 +499,7 @@ respectively.
 \begin{figure}[!htb]
   \centering
     \includegraphics[width=\linewidth]{img/lipitervarreldiff.png}
-  \caption{Relative difference between the reaction field energy of \ce{H_2O} calculated with the variational implementation against the iterative implementation}
+  \caption{Relative difference between the reaction field energy of \ce{Li^+} calculated with the variational implementation against the iterative implementation}
   \label{fig:lipreldiffvardaug}
 \end{figure}
 \clearpage
