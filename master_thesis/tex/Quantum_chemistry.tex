@@ -530,34 +530,41 @@ and the two-electron repulsion energy $V_{e}[\rho]$ \cite{Sorland, PhysRev.136.B
 \begin{equation}\label{eq:energyfunctional}
   E[\rho] = V_{Ne}[\rho] + T[\rho] + V_{e}[\rho]
 \end{equation}
+In Kohn--Sham theory, in order to compute the Kinetic energy functional, we assume
+that we can describe the energy of the system as the exact kinetic energy  $T_S$ of a single Slater
+determinant describing a charge distribution $\rho$ of a fictitious system of
+non-interacting electrons, composed of orbitals $\phi_i$ \cite{Jensen:2017}.
+\begin{equation}\label{eq:approxdensity}
+    \rho = \sum^n_i \abs{\phi_i}^2
+\end{equation}
+\begin{equation}\label{eq:TS}
+  T_S = \sum_{i}^n\left\langle\phi_i\left|-\frac{1}{2}\nabla^2\right|\phi_i\right\rangle
+\end{equation}
 The attraction potential functional $V_{Ne}[\rho]$ is easily determined as its classical definition \cite{Jensen:2017}
 \begin{equation}
   V_{Ne}[\rho] = - \sum^N_I \int\frac{Z_I\rho(\rvec)}{\abs{\Rvec_I - \rvec}} \text{d}\rvec.
 \end{equation}
-We can also divide the two-electron repulsion into Coulomb $J[\rho]$ and exchange $K[\rho]$ contributions
-where $J[\rho]$ is
+We can also divide the two-electron repulsion into Coulomb $J[\rho]$ and exchange $K[\rho]$ contributions.
+Since we are describing $\rho$ as in Equation \ref{eq:approxdensity} we can evaluate the
+Coulomb energy in the classical way as \cite{Jensen:2017}.
 \begin{equation}
   J[\rho] = \frac{1}{2}\int\int \frac{\rho(\rvec)\rho(\rvec^{~\prime})}{\abs{\rvec - \rvec^{~\prime}}} \text{d}\rvec\text{d}\rvec^{~\prime},
 \end{equation}
-The exchange contribution is not as straight forward to compute \cite{Jensen:2017}
-and we assume that it does not account for a large contribution to the energy.
 
-In Kohn--Sham theory, in order to compute the Kinetic energy functional, we assume
-that we can describe the energy of the system as the exact kinetic energy  $T_S$ of a single Slater
-determinant describing a charge distribution $\rho$ of a system of
-non interacting electrons, composed of orbitals $\phi_i$ \cite{Jensen:2017}.
+Some of the kinetic energy is lost when we use the form in \ref{eq:TS} since we are calculating
+from fictitious system of non-interacting electrons, and the exchange
+functional $K[\rho]$ is not known. We gather these terms in a exchange correlation
+functional $E_{xc}[\rho]$ as \cite{Jensen:2017}
 \begin{equation}
-  T_S = \sum_{i}^n\left\langle\phi_i\left|-\frac{1}{2}\nabla^2\right|\phi_i\right\rangle
+  E_{xc}[\rho] = \left(T[\rho] - T_S\right) + \left(V_{e} - J[\rho]\right)
 \end{equation}
 
-We can now construct a new energy functional $E_{DFT}[\rho]$ described by the above
-definitions \cite{Jensen:2017}:
+We can now redefine a new energy functional $E_{DFT}[\rho]$  from \ref{eq:energyfunctional}
+By substituting the definitions mentioned above \cite{Jensen:2017}:
 \begin{equation}\label{eq:adjustedenergyfunc}
   E_{DFT}[\rho] = T_S[\rho] + V_{Ne}[\rho] + J[\rho] + E_{xc}[\rho]
 \end{equation}
-where $E_{xc}[\rho]$ is the exchange-correlation energy defined as the remaining terms
-unaccounted for from the kinetic energy and exchange contributions. Ways of
-defining $E_{xc}$ can be seen in \cite{Cramer:2004, Jensen:2017}.
+different ways of defining $E_{xc}$ can are outlined in \cite{Cramer:2004, Jensen:2017}.
 
 By the variational principle discussed previously, we are trying to minimize the energy
 to get the best representation of the system with the given basis. Here we try to
@@ -568,7 +575,7 @@ find minima by differentiating \ref{eq:adjustedenergyfunc} with respect to $\rho
 Where $V_{xc}$ is the functional derivative $\diff{\rho}E_{xc}[\rho]$ \cite{Cramer:2004}.
 We can see that $V_{xc}$ seems to be a correction to the gradient to our first definition
 of the the energy \ref{eq:energyfunctional}. The system described by Equation
-\ref{eq:energyfunctional} is a system of non-interacting electrons. In this
+\ref{eq:energyfunctional} is the fictitious system of  non-interacting electrons. In this
 system we can define one-electron operators $\hat{h}_i^{KS}$ as
 \begin{align}
   \hat{h}_i^{KS} \phi_i &= \epsilon_i \phi_i\label{eq:ksonese} \\
