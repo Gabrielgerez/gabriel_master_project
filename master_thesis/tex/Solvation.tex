@@ -1,7 +1,7 @@
 \makeatletter
 \def\input@path{{../}}
 \makeatother
-\documentclass[../master_thesis.tex]{subfiles}
+\documentclass[../Thesis.tex]{subfiles}
 \begin{document}
 \chapter{Solvent Effect}\label{chap:Solvent_effect}
 In chapter \ref{chap:Quantum_chemistry} we saw how to approximate and
@@ -348,8 +348,8 @@ with the following integral
  \begin{equation}
    U_{\sigma}(\rvec) = \int_{\Gamma}\frac{\sigma(\vec{s})}{\abs{\rvec - \vec{s}}} \text{d}\vec{s}\ ;\ s \in \Gamma,
  \end{equation}
-If we divide the surface into a set of finite elements (tesserae
-\cite{Tomasi:2005ipa, Sorland}) with set areas $A$ that are small enough to be able
+If we divide the surface into a set of finite elements, tesserae
+\cite{Tomasi:2005ipa, Sorland}, with set areas $A$ that are small enough to be able
 to assume that $\sigma$ does not change inside each of these tesserae, will let us define the integral
 as a sum over all the tesserae
 \begin{equation}
@@ -428,12 +428,12 @@ where $Y^m_l$ is the spherical harmonics with angular momentum $l$ and projectio
 along the z-axis $m$, $a$ is the radius of the cavity and $B_{lm}$ is a set of
 constants which need to be found \cite{Tomasi:1994wt}. It goes without saying that
 since we are using spherical harmonics, the cavities used in this method must be
-spherical. SOme methods exist to work with elipsoidal cavities and even interlocking
+spherical. Some methods exist to work with ellipsoidal cavities and even interlocking
 spheres, which are outlined in \cite{Tomasi:1994wt} and \cite{Tomasi:2005ipa}.
 
 
 \subsection{Solving the generalized Poisson equation in multiwavelet basis}\label{solmw}
-Following Fosso-Tande \cite{FossoTande:2013ka} the cavity is defined as a molecular shape
+Following Fosso--Tande \cite{FossoTande:2013ka} the cavity is defined as a molecular shape
 interlocking spheres cavity. We start by defining a normal
 signed distance function $s_i$ of a point $\rvec$ away from the surface of the
 sphere $C_i$ with radius $R_i = 1.2\cdot R^{vdw}_i$ and centered on atom $i$ with

@@ -1,14 +1,13 @@
 \makeatletter
 \def\input@path{{../}}
 \makeatother
-\documentclass[../master_thesis.tex]{subfiles}
+\documentclass[../Thesis.tex]{subfiles}
 \begin{document}
 \chapter{Multiwavelet Basis}\label{chap:MW_basis}
-As stated in the previous chapter, the main goal of computational chemistry is
+As stated in the previous chapter \ref{chap:Quantum_chemistry}, the main goal of computational chemistry is
 to approximate systems in order to calculate their energy through the \ac{SE}. %cite please
 These systems are completely described by wave functions \cite{Cohen:1973}.
-This means that to approximate a solution to the system is to approximate its
-wave function.
+
 
 In order to construct a solution (wave function) to the \ac{SE} of a given
 system one uses sets of functions with differing properties. These
@@ -76,8 +75,8 @@ In order to diminish the problem of the cusp in \ac{STO} one tries to represent 
 \ac{STO} as linear combinations of \acp{GTO}. This way the decay is properly modeled and the
 cusp is no longer a difficult problem to solve. This has the obvious weakness of needing
 to compute more basis functions for a single orbital, which increases the cost of running
-the calculations \cite{Cramer:2004}. In order to removee this we define the \acp{GTO}
-as bein represented by another linear combination of \acp{GTO}, but the coefficients for
+the calculations \cite{Cramer:2004}. In order to remove this we define the \acp{GTO}
+as being represented by another linear combination of \acp{GTO}, but the coefficients for
 this one are known and static. This way we can have a better representation of \acp{STO}
 with \acp{GTO} \cite{Jensen:2017}.
 
@@ -107,7 +106,7 @@ An example is the valence and conduction bands in metal. They are not that good 
 describing internal electrons, where the oscillation frequency near the nuclei need to increase a lot
 in order to properly approximate the orbital \cite{Jensen:2017}.
 
-\section{Multi-resolution analysis}
+\section{Multiresolution analysis}
 \subsection{Definition}
 Consider that we have a function $\varphi \in L^2(\Real)$ where its translations
 and dilations are described as \cite{Schneider:2007}
@@ -193,7 +192,7 @@ at \cite{Sorland}
 where $d$ are the difference coefficients and $s$ are the scaled averages of dyadic intervals of the function $f(x)$.
 
 The scaling coefficients $s^j_k$ are computed by the projection $\braket{\varphi^j_k(x)|f(x)}$.
-Likewise the difference coefficients $d^j_k(x)$ are computed by the projection \newline$\braket{\psi^j_k(x)|f(x)}$.
+Likewise, the difference coefficients $d^j_k(x)$ are computed by the projection \newline$\braket{\psi^j_k(x)|f(x)}$.
 Because of the way the Haar function is defined, we can define  the scaling coefficients as
 scaled averages of $f(x)$ at intervals $2^{-j}$ \cite{Sorland, Beylkin:MRA}
 \begin{equation}
@@ -316,7 +315,7 @@ We again define subspaces $W^^l$ as the orthogonal complements of $V^l_j$
  \begin{equation}
    \psi^j_{ik}(x) = 2^\frac{j}{2}\psi_i(2^jx-k), \ i=1, ...,l;\ k \in \mathbb{Z}.\label{eq:mwbasisfuncs}
  \end{equation}
- The functions $\psi_1, ...,\psi_l$ are piecewise polynomial, orthogonal to lower order polynomials and
+ The functions $\psi_1, ...,\psi_l$ are piece-wise polynomial, orthogonal to lower order polynomials and
  vanish outside $[0,1]$ and their subscripts denote the polynomial order \cite{Alpert1993}
 \begin{align}
   \int_0^1\psi_i(x)x^m \text{d}x = 0,\ m = 0, 1, ..., l-1.
@@ -604,19 +603,19 @@ as
 where each block $r_i$ is a $l\times l$ and $r_1$ and  $r_{-1}$ describe the interactions
 between neighboring intervals \cite{Beylkin1999AdaptiveSO}.
 Computations of this transition matrix $\bar{R}$ are shown in \cite{Beylkin1999AdaptiveSO}
-and there it is assummed that the rest of the operators $\hat{A}^n,\ \hat{B}^n,\ \hat{C}^n$
+and there it is assumed that the rest of the operators $\hat{A}^n,\ \hat{B}^n,\ \hat{C}^n$
 are computed by rescaling the representation explained above.
 
 \subsubsection{Poisson operator}
 In order to solve a system where an electrostatic field $V$ is affected by a
 charge distribution $\rho$ changes throughout space one attempts to solve a Poisson equation
 \begin{equation}
-  \nabla V = -4\pi \rho.
+  \nabla^2 V = -4\pi \rho.
 \end{equation}
 In \ac{MW} one makes use of the Poisson operator $\hat{\mathscr{P}}$ to
 find the electrostatic potential induced by the charge distribution
 \begin{equation}\label{eq:Poissonopmw}
-\hat{\mathscr{P}}(r)=\int \frac{1}{4 \pi\left\|r-r^{\prime}\right\|} \rho\left(r^{\prime}\right)
+\hat{\mathscr{P}}[\rho(\rvec)]=\int \frac{1}{4 \pi\left\|r-r^{\prime}\right\|} \rho\left(r^{\prime}\right)
 d r^{\prime},
 \end{equation}
 which is a simplified version of the Poisson kernel shown in \cite{Frediani:2013}.

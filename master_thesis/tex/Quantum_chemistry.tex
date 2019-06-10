@@ -1,25 +1,25 @@
 \makeatletter
 \def\input@path{{../}}
 \makeatother
-\documentclass[../master_thesis.tex]{subfiles}
+\documentclass[../Thesis.tex]{subfiles}
 \begin{document}
 \chapter{Quantum Chemistry}\label{chap:Quantum_chemistry}
 \section{Quantum Mechanics}
 
-\subsection{The Postulates of Quantum Mechanics}
+\subsection{The postulates of quantum mechanics}
 
 \ac{QM} are based on a set rules that define operations and states. We will
 present these rules as six different postulates of \ac{QM} (sometimes divided
 as 5) \cite{Atkins:2011, Cohen:1973}.
 
-\subsubsection{First Postulate}
-The first postulate states that everything we can know about a physical system
+\subsubsection{First postulate}
+The first postulate states that everything known about a physical system
 can be extracted from the wave function $\Psi(x, t)$ of that system
 \cite{Atkins:2011}. The wave function is defined as a function vector, or
 state vector, $\ket{\Psi(t_0)}\in L^2$ that has a defined
 finite scalar product as shown in Equation \ref{eq:diracproduc} \cite{Cohen:1973}
 
-\subsubsection{Second Postulate}
+\subsubsection{Second postulate}
 A generic observable $O$ is represented by a generic operator
 $\hat{O}$. Two such observables are the position and momentum of a particle. These are
 represented by $\hat{q_i}$ and $\hat{p_i}$ respectively, where
@@ -35,7 +35,7 @@ $i = \{x, y, z\}$. These operators fulfill the following commutation relations
 
 The Operators that represent observables are linear and Hermitian.
 
-\subsubsection{Third Postulate}
+\subsubsection{Third postulate}
 When measuring an observable $O$ on a system $\ket{\Psi}$, the only possible
 values of the measurement are eigenvalues of the corresponding operator $\hat{O}$
 onto the measured system $\Psi$ at its current state $\ket{\Psi_i}$. The eigenvalues
@@ -45,15 +45,16 @@ are solutions to the following equation \cite{Cohen:1973}
 \end{equation}
 This holds true even if the state measured is not an eigenstate of $\hat{O}$.
 
-We can represent a system state vector $\ket{\Psi}$ that is not an eigenstate
+A system state vector $\ket{\Psi}$ that is not an eigenstate
 of $\hat{O}$ as a linear combination of eigenstates $\ket{i}$ of the operator
+can be represented as
 \begin{equation}
   \ket{\Psi} = \sum_i c_i \ket{i}
 \end{equation}
 where the coefficients $c_i$ are computed as the projection of $\ket{\Psi}$ onto
 the eigenstates of the operator
 \begin{equation}\label{eq:projcoeff}
-  c_i = \braket{i|\Psi}
+  c_i = \braket{i|\Psi}.
 \end{equation}
 Let us say that we apply the generic operator on one of its eigenstates that
 is multiplied with the projection coefficient $c_i$ from Equation \ref{eq:projcoeff}.
@@ -66,7 +67,7 @@ applying the operator on it will always give us exactly one of its eigenvalues, 
 different probabilities  depending on its projection on the set of eigenstates
 of the operator \cite{Cohen:1973}.
 
-\subsubsection{Fourth Postulate}
+\subsubsection{Fourth postulate}
 The fourth postulate states the possible probabilities of getting a specific
 eigenvalue for a given measurement.
 Let $\ket{i}$ be an eigenfunction of $\hat{O}$ such that:
@@ -97,21 +98,21 @@ for each eigenvalue is:
 \end{equation}
 Here we have ignored the case for degenerate eigenvalues and continuous spectra of
 eigenvalues, where the method is analogous to the one used above. The reader is
-invited to look them up themselves in \cite{Cohen:1973, Atkins:2011}.
+invited to look them up themselves in \cite{Atkins:2011, Cohen:1973}.
 
-\subsubsection{Fifth Postulate}
+\subsubsection{Fifth postulate}
 The fifth postulate states that immediately after a measurement where the eigenvalue was $o_i$
 the state of the system $\ket{\Psi}$ collapses into a state where the only value one
-can measure is $o_i$, that is $ \ket{\Psi_i} $ using the conventions stated in postulate 3 and 4.
+can measure is $o_i$, which is $ \ket{i} $ using the conventions stated in postulate 3 and 4.
 This is because before measuring, the probabilities for any eigenvalue
-is as stated in the fourth postulate. When the value has been measured, though,
+is as stated in the fourth postulate. When the value has been measured
 the uncertainty does not exists, as the state of the system must be one that gives
 exactly that value. The following Equation \ref{eq:post5} represents the postulate.
 \begin{equation}\label{eq:post5}
   \ket{\Psi} \stackrel{o_i}{\Rightarrow} \ket{\Psi_i}
 \end{equation}
 
-\subsubsection{Sixth Postulate}
+\subsubsection{Sixth postulate}
 When undisturbed, the system changes in a deterministic way \cite{Cohen:1973}.
 This change is governed by the time dependent \ac{SE} \cite{Cohen:1973, Atkins:2011}:
 \begin{equation}\label{eq:tdepSE}
@@ -120,7 +121,7 @@ This change is governed by the time dependent \ac{SE} \cite{Cohen:1973, Atkins:2
 Where $\hat{H}$ is the Hamiltonian operator which has the total energy of the
 system as its eigenvalues.
 
-\subsection{The Schrödinger Equation}
+\subsection{The Schrödinger equation}
 
 Lets consider the following \ac{SE} for a particle allowed to move in only one dimension
 and where its potential energy varies with position (e.g., the Harmonic oscillator
@@ -139,8 +140,8 @@ functions \cite{Atkins:2011}:
   \end{split}
 \end{align}
 In the last step of the Equation \ref{eq:sepvar1DSE} we divided both sides with $\frac{1}{\tau\psi}$.
-This shows us that, since the left-hand side of the equation is only dependent on $x$ and the right-hand
-side is only dependent on $t$, no matter how much we change the each of the coordinates, they must always equal to
+This shows that, since the left-hand side of the equation is only dependent on $x$ and the right-hand
+side is only dependent on $t$, no matter how much we change each of the coordinates, they must always equal to
 a constant. This constant will be denoted by $E$ as it is the energy of the system. This gives us the following set of equations \cite{Atkins:2011}:
 \begin{subequations}
   \label{eq:sysSE}
@@ -212,8 +213,7 @@ electrons are located in a three-dimensional coordinate system where each nucleu
 coordinates $\vec{R}_I = (x_I, y_I, z_I)$ and each electron has coordinates
 $\rvec_i = (x_i, y_i, z_i)$.
 
-We are trying to calculate the total energy and wave functions of the system. For
-that we define a time independent \ac{SE} where the wave function is dependent on
+To calculate the total energy and wave functions of the system we define a time independent \SE where the wave function is dependent on
 the coordinates of both the electrons and the nuclei, which we will use a single $\vec{R}$
 to the coordinates of all the nuclei and a single $\rvec$ to denote the coordinates
 of all the electrons.
@@ -245,23 +245,23 @@ repulsion $\hat{V}_{ee}$ \cite{Cramer:2004}.
   \hat{V}_{ee} &= \frac{1}{2}\sum^n_{i \neq j} \frac{e^2}{\abs{\rvec_i - \rvec_j}}
 \end{align}
 where $I,\ J$ iterate through the nuclei and $i, \ j$ iterate through the electrons.
-We can see now that the Hamiltonian is then dependent on the positions of all the electrons and all
+The Hamiltonian is therefore dependent on the positions of all the electrons and all
 the nuclei \cite{Jensen:2017}
 \begin{equation}
   \hat{H}(\rvec, \vec{R}) = \hat{T}_e + \hat{T}_N + \hat{V}_{Ne} +\hat{V}_{NN} + \hat{V}_{ee}
 \end{equation}
-We can see that both repulsion potentials $\hat{V}_{NN}, \hat{V}_{ee}$ have $\frac{N(N - 1)}{2}$ and $\frac{n(n - 1)}{2}$ terms
+Both repulsion potentials $\hat{V}_{NN}, \hat{V}_{ee}$ have $\frac{N(N - 1)}{2}$ and $\frac{n(n - 1)}{2}$ terms
  respectively, while the other terms have much simpler sums {sums over one index in the case of the
 kinetic energies and $N\cdot n$ terms in the attraction potential $\hat{V}_{Ne}$}.
 
 In the \ac{BO}  we assume that the nuclei of the molecule are much heavier
 than the electrons (a single proton is approximately $1836$ times heavier
-than an electron \cite{NIST:2019}) that the electrons can instantaneously respond to
+than an electron \cite{NIST:2019}) the electrons can instantaneously respond to
 any change in the configuration of the nuclei \cite{Atkins:2011}. That means that we can solve an
 electronic problem for any given nuclear geometry as if the nuclei were static
-\cite{Cramer:2004, Jensen:2017, Atkins:2014}.
+\cite{Atkins:2014, Cramer:2004, Jensen:2017}.
 
-Following this  assumption we separate the wave function into an electronic
+Following this assumption we separate the wave function into an electronic
 $\Psi_e$ and a nuclear wave function $\Psi_N$
 \begin{equation}
   \Psi(\rvec, \vec{R}) = \Psi_N(R)\Psi_e(\rvec; \vec{R}).
@@ -280,13 +280,13 @@ The electronic \ac{SE} is as follows
 Where the electronic energy $E_e$ becomes a function of $\vec{R}$ which is solved as
 a constant for each nuclear geometry. In the electronic Hamiltonian
 we assume that the kinetic energy of the nuclei is zero, but we still need to
-compute the nuclear repulsion $V_{NN}$, but as we are solving for any given geometry
- it becomes a constant \cite{Cramer:2004}. The electron
+compute the nuclear repulsion $V_{NN}$. As we are solving for any given geometry
+ $V_{NN}$ becomes a constant \cite{Cramer:2004}. The electron
 Hamiltonian $\hat{H}_e$ is as follows
 \begin{equation}\label{eq:elhamiltonian}
     \hat{H}_e(\rvec; \vec{R}) = \hat{T}_e + \hat{V}_{Ne} + \hat{V}_{ee}  + \hat{V}_{NN}
 \end{equation}
-Solving the electronic \ac{SE} for all possible nuclear geometries will give us
+Solving the electronic \ac{SE} for all possible nuclear geometries will give
 a \ac{PES} defined by the electronic energy for all the different geometries.
 With this we can go on to solve the total \ac{SE} \cite{Jensen:2017}
 \begin{equation}
@@ -294,10 +294,10 @@ With this we can go on to solve the total \ac{SE} \cite{Jensen:2017}
 \end{equation}
 
 In the following sections we will be talking mostly about solving the electronic \ac{SE},
- which means that we will drop the subscript and simply denote the electronic
-wavefunction as $\Psi$ and its Hamiltonian as $\hat{H}$.
+ where we will drop the subscript and simply denote the electronic
+wave function as $\Psi$ and its Hamiltonian as $\hat{H}$.
 
-\subsection{Variational Principle}
+\subsection{Variational principle}
 %need to edit this
 Consider a complete set of orthonormal eigenfunctions $ \Psi_i$  of the
 Hamiltonian $\hat{H}$. From Equation \ref{eq:lincomb} we build a representation of an
@@ -306,24 +306,24 @@ projection coefficients $c_i$.
 \begin{equation}
   \Phi = \sum\limits_ic_i\Psi_i
 \end{equation}
-For ease of notation we assume that  $\Phi$ is normalized. This means that the
-following holds
+For ease of notation we assume that  $\Phi$ is normalized. This the
+following
 \begin{equation}
   \braket{\Phi|\Phi} = \sum\limits_i^nc_i^2 = 1
 \end{equation}
  Additionally, the energy associated with the Hamiltonian can
-be calculated as in Equation \ref{eq:endevaleq} to give us this:
+be calculated as in Equation \ref{eq:endevaleq} to give us
 \begin{equation}
   \braket{\Phi|\hat{H}|\Phi} = \sum\limits_i^nc_i^2E_i\label{eq:genenerg}
 \end{equation}
-This tells us the the energy of the wave function $\Phi$ can be determined by
+This tells us the energy of the wave function $\Phi$ can be determined by
 knowing the energies $E_i$ of each eigenfunction $\psi_i$ and the coefficients
 $c_i$ associated with the linear combination that describes $\Phi$
 \cite{Cramer:2004}.
 
 We know that for this to be a quantum mechanical system there must be a lowest
 energy among all energies $E_i$. We choose to call this lowest energy $E_0$.
-Subtracting $E_0$ from Equation \ref{eq:genenerg} to find out the difference
+Subtracting $E_0$ from Equation \ref{eq:genenerg} to find the difference
 between the calculated energy of the arbitrary wave function $\Phi$ with respect
 to the ground state eigenvalues:
 
@@ -332,7 +332,7 @@ to the ground state eigenvalues:
 \end{equation}
 We know that each term $c_i$ must be greater or equal to zero (non-trivial) and
 that the term $(E_i - E_0)$ must be greater or equal to zero as well
-\cite{Cramer:2004}, because each individual $E_i$ may add more energy to the
+\cite{Cramer:2004}, as each individual $E_i$ may add more energy to the
 ground state. This leads to the following set of inequalities.
 
 \begin{equation}
@@ -341,7 +341,7 @@ ground state. This leads to the following set of inequalities.
     \braket{\Phi | \hat{H} | \Phi} & \geq E_0
   \end{split}
 \end{equation}
-We know from Equation \ref{eq:endevaleq} that the inequality in the last term in
+It can be inferred from \ref{eq:endevaleq} that the inequality in the last term in
 \ref{eq:varprin} shows that the energy calculated as an eigenvalue of $\Phi$ is
 always greater or equal to zero. This lets us construct our trial wave functions
 for the ground state of a system with any basis set. We can assess the quality
@@ -352,11 +352,11 @@ as possible \cite{Cramer:2004}.
 In the previous sections we showed two main points about solving the \ac{SE} for
 many-body systems. The first one, with the \ac{BO} approximation, is that we,
 instead of solving for the energy of the whole system at the same time, can solve an electronic
-\ac{SE} for each geometry of the molecule. The second point is that we can construct
+\ac{SE} for each geometry of the molecule. Secondly we can construct
 the wave function with a basis set representation of our choice, for which its
 accuracy is evaluated by how low the calculated energy is.
 
-Our goal now is to find a way to systematically create wavefunctions and
+Next, we intend to find a way to systematically create wave functions and
 minimize them as in the variational principle. This is done with an iterative
 procedure called the \ac{SCF}.
 
@@ -384,7 +384,7 @@ electrons, the coefficient outside the determinant is a normalization constant
 and each of the spin orbitals are orthonormal to each other.
 
 In a Slater determinant each column represent a spinorbital and each row one electron.
-The spatial orbitals can, and are mostly, built using a basis set as decribed in
+The spatial orbitals can, and are mostly, built using a basis set as described in
 Equation \ref{eq:lincomb}. The spin functions are orthonormal eigenfunctions of the operator $\hat{S}_z$
 and have only two eigenvalues $\pm \frac{\hbar}{2}$ \cite{Cramer:2004}.
 
@@ -463,8 +463,8 @@ process until the change in the orbitals reach below a predetermined threshold
 \cite{Helgaker:2012, Cramer:2004}. This iterative method is called \ac{SCF}.
 
 The sum of the orbital energies do not give us the total energy of the system.
-Since, for each electron,  we are accounting for the repulsion and exchange interactions with all the
-other electrons, we end up counting twice, which means we have to subtract half of
+For each electron,  we are accounting for the repulsion and exchange interactions with all the
+other electrons, we end up counting twice. Which means we have to subtract half of
 these interactions from the total orbital energy. This gives the total energy $E$ as
 \cite{Jensen:2017}
 \begin{equation}
@@ -473,7 +473,7 @@ these interactions from the total orbital energy. This gives the total energy $E
 
 An important point to note is that at the start of this section we assumed our
 wavefunction to consist of a single determinant. This is part of the \ac{HF}
-approximation, where we only care about the lowest energy level of the system, and
+approximation, where we only take into account the lowest energy level of the system, and
 we assume that a single Slater determinant is enough to describe it.
 
 \subsection{Density Functional Theory}
@@ -508,7 +508,7 @@ potential $V_{ext}$, such as the nucleus-electron attraction potential. In order
 compute the total energy, we need to know how to determine both of those interactions.
 We know from the definitions above that the electrons can be described by the density.
 The Hohenberg-Kohn existence theorem states that the ground-state density of the system
-determinea the $V_{ext}$ \cite{Cramer:2004}. The Hamiltonian of the system can thus be defined and
+determines the $V_{ext}$ \cite{Cramer:2004}. The Hamiltonian of the system can thus be defined and
 from it one can define the wave function of the system.
 
 Now that both the Hamiltonian and the wave function are determined by the ground
@@ -519,7 +519,7 @@ This brings us to the Hohenberg--Kohn variational theorem, which states that
 we can keep choosing different densities to construct Hamiltonians and wave functions,
 and the ones that give us lower energy will be closer to the correct density \cite{Cramer:2004}.
 
-The important points from thes Hohenberg--Kohn theorems are that the energy of
+The important points from the Hohenberg--Kohn theorems are that the energy of
 the system is entirely determinable from the ground-state density, and that we can
 get densities closer to the true density by minimizing the energy.
 \subsubsection{Kohn--Sham theory}

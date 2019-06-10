@@ -1,10 +1,10 @@
 \makeatletter
 \def\input@path{{../}}
 \makeatother
-\documentclass[../master_thesis.tex]{subfiles}
+\documentclass[..Thesis.tex]{subfiles}
 \begin{document}
-\chapter{Implementation of The Generalized Poisson Equation}\label{chap:implementation}
-\section{Generalized Poisson equation on Multiwavelet basis}
+\chapter{Implementation of the generalized Poisson equation}\label{chap:implementation}
+\section{Generalized Poisson equation on multiwavelet basis}
 In the following chapter we will outline our implementation of the \ac{GPE}
 for solvent systems. We took Fosso--Tande's and Harrison's
 paper in \cite{FossoTande:2013ka} as a starting point. There they defined
@@ -104,7 +104,7 @@ We then go on to create the effective volume charge distribution by the followin
       \rho_{eff} = \frac{1 - \epsilon}{\epsilon}\rho_{tot}\\
     \end{split}
 \end{align}
-This differs from Fosso-Tande's effective charge distribution in that we incorporate
+This differs from Fosso--Tande's effective charge distribution in that we incorporate
 the subtraction of $U_{vac}$ to it from the start \cite{FossoTande:2013ka}. This
 way we will be solving directly for the reaction field potential $U_r$.
 The alternative is to instead compute the total potential $U$ and then subtract
@@ -112,7 +112,7 @@ the gas phase potential to get the Reaction potential as in \cite{FossoTande:201
 Calculating the Reaction potential with the latter method brings loss of accuracy
 by adding numerical noise.
 
-\subsection{Surface Charge distribution}
+\subsection{Surface charge distribution}
 Given the total interaction potential of $U$ of a solvation system with
 dielectric function $\epsilon$ defined with cavity $C$, we compute the surface charge distribution
 $\gamma_s$ as shown in algorithm \ref{alg:gamma}.
@@ -231,7 +231,7 @@ in the next iteration. The first Iterative \ac{SCRF} was done so that we would
 start the Optimizing of the potential with an already good guess.
 \section{Software used}
 The problem was first implemented in VAMPYR \cite{Vampyr} which is a python interface to the
-MRCPP \cite{MRCPP} code.  Then it was implemented in C++ using \mrchem \cite{MRchem}. All of the above softawares
+MRCPP \cite{MRCPP} code.  Then it was implemented in C++ using \mrchem \cite{MRchem}. All of the above software
 are \ac{MW} software developed at Hylleraas centre of Quantum molecular sciences.
 Both implementations are identical, except for slight changes for
 performance improvement, such as using a KAIN accelerator,

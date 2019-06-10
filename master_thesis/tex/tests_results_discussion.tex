@@ -1,7 +1,7 @@
 \makeatletter
 \def\input@path{{../}}
 \makeatother
-\documentclass[../master_thesis.tex]{subfiles}
+\documentclass[../Thesis.tex]{subfiles}
 \begin{document}
 \chapter{Results}\label{chap:Results}
 \section{Overview of tests}
@@ -64,7 +64,7 @@ and \ce{Li^+} as those are the ones that had the most data points. We leave the
 reader to evaluate the variational energies for the other molecules.
 
 \end{enumerate}
-All \mrchem tests were done with relative precision of $1e-6$, RHF method and \verb!SAD_DZ! as a
+All \mrchem tests were done with relative precision of $1e-6$, HF method and \verb!SAD_DZ! as a
 starting guess \cite{MRchem}. All Gaussian calculations were ran with \ac{HF} method,  Dunning's correlation
 consistent basis sets\cite{doi:10.1063/1.456153} of increasing completeness, \verb!scrf(pcm, read)! option with
 \verb!nocav!, \verb!nodis! and  \verb!norep! keywords. Both Gaussian and \mrchem computations were run with
@@ -701,7 +701,7 @@ bigger cavities as these are shown to give better results. Both of those are pos
 with the implementation used now, but decreasing the width of the transition might
 make the cavity harder to project.
 
-A better solution to this is to implement the derivative of the caivty as
+A better solution to this is to implement the derivative of the cavity as
 a combination of analytical derivatives, as Fosso--Tande did in \cite{FossoTande:2013ka}, which
 might let us get better results with the same parameters used in the tests of this chapter.
 

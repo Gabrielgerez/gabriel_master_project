@@ -1,29 +1,29 @@
 \makeatletter
 \def\input@path{{../}}
 \makeatother
-\documentclass[../master_thesis.tex]{subfiles}
+\documentclass[../Thesis.tex]{subfiles}
 \begin{document}
 \chapter{Introduction}
 \section{Background}
-Gas phase calculations for Quantum chemical systems are well defined and
-reliable results are able to be calculated from them, but it is rare for a chemist
-to work experimentally with gas phase properties. Most of the processes of interest
-in chemical, biological and physical mechanisms happen while in a solvent \cite{FossoTande:2013ka}.
+Gas phase calculations for Quantum chemical systems have well defined and
+reliable results which can be used to predict properties from several systems in vacuum.
+Although, it is rare for an experimental chemist to work with gas phase properties.
+Most of the processes of interest chemical pricesses and mechanisms happen while in a solvent \cite{FossoTande:2013ka}.
 Therefore it is important to be able to produce reliable results when working
 with these systems. Many models exist to solve this system, outlined in chapter
-\ref{chap:Solvent_effect}, but the family of models we are focusing on is \ac{PCM}.
+\ref{chap:Solvent_effect}, but, in this thesis, we will mainly focusing on \ac{PCM}.
 
-A big hurdle of \ac{PCM} is working with the sharp transition between solvent and
+A big hurdle for \ac{PCM} is working with the sharp transition between solvent and
 solute. Numerous methods have been implemented in order to minimize the discontinuity
 at this boundary \cite{Tomasi:2005ipa}. Our approach is to define both the solvent
 and substrate environments as an analytical function represented with \ac{MW} basis.
 
-\ac{MW} are a part of a family of basis called \ac{MRA} bases. These basis have useful
-characteristics for development of solutions of partial differential equations.
+\ac{MW} are a part of a family of basis classified under \ac{MRA}. \ac{MW} basis
+sets have useful characteristics for development of solutions of partial differential equations.
 These are orthogonality of wavelet spaces, vanishing moments and locally adaptive
 representations of functions, which allow for further refining critical areas of a system.
 
-\section{Summary of Results}
+\section{Summary of results}
 The main goal with this project was to have a working implementation of solvent
 effect in \ac{MW} basis by following in Fosso--tande's footsteps \cite{FossoTande:2013ka}.
 Another objective was to implement a variational formulation of the \ac{GPE}
@@ -32,31 +32,29 @@ as defined in \cite{Lipparini:2010bg}.
 We found that the implementation managed to produce values that did not differ
 significantly from exact calculations of the properties tested, these being the Born energy of
 the solvent \cite{Tomasi:1994wt} and Gauss' theorem as defined in \cite{Sorland}.
-The Energy calculations yielded results that converged towards Gaussian results
+The energy calculations yielded results that converged towards Gaussian results
 as the radii increased. We also tested the Variational formulation of the
 \ac{GPE} shown in \cite{Lipparini:2010bg}, which gave promising results for
 small systems, such as \ce{Li^+}, but showed room for improvement for bigger systems.
 
 
 
-\section{Structure of thesis}
-In chapter \ref{chap:Quantum_chemistry} of this thesis we will present the quantum
-and computational Chemical formalism and methods used among these is the
-Born--Oppenheimer approximation, variational principle, \ac{HF} method and
+\section{Structure of the thesis}
+In chapter \ref{chap:Quantum_chemistry} of this thesis the quantum
+and computational Chemical formalism will be presented along with  methods used
+to solve systems. Among these are the Born--Oppenheimer approximation, variational principle, \ac{HF} method and
 \ac{DFT}.
 
-basis for solving quantum systems. Some examples of Wavelet basis are shown and
-Chapter \ref{chap:MW_basis} will mention some basis sets and define \ac{MW}
+Some examples of Wavelet basis are shown and Chapter \ref{chap:MW_basis} will mention some basis sets and define \ac{MW}
 the implementation of different operators is described.
 
 Chapter \ref{chap:Solvent_effect}
-describes the particular system we work with in this thesis, namely, Solvent
-effect and Reaction Potential. This chapter will also introduce a new variational
-formulation of the Generalized Poisson equation used in solving the electrostatic
-Reaction Field problem.
+describes the particular system we work with in this thesis, namely, solvent
+effect and the reaction potential. This chapter will also introduce a new variational
+formulation of the \ac{GPE} used in solving the electrostatic reaction field problem.
 
-Chapter \ref{chap:implementation} describes how the Reaction Field Potential was implemented
-using \mrchem. It will also describe the way the variational formulations was implemented.
+Chapter \ref{chap:implementation} describes how the reaction field Potential was implemented
+using \mrchem. It will also describe the way the variational formulation was implemented.
 
 Chapter \ref{chap:Results} Goes through the systems that were used to test the implementation,
 along with the type of tests that were performed. The results will be tabulated and
@@ -66,13 +64,12 @@ presented along with points of improvement and future development.
 Notation differs slightly between works in computational and Quantum Chemistry.
 Most of the equations and formulas use the same standard notation, while others
 might differ slightly in accents and other details in their notations. Therefore
-in this section I will summarize the notation used in this thesis.
+in this section a summarization of notation used in this thesis will be given.
 
 The following Table \ref{tab:notation} shows most of the notation used for
 common objects in mathematics and quantum mechanics.
 
 \begin{table}[h!]
-
     \resizebox{\textwidth}{!}{
   \begin{tabular}{|l|l|c|}
     \hline
@@ -82,18 +79,18 @@ common objects in mathematics and quantum mechanics.
     \rule{0pt}{12.5pt}matrices & Upper case letter or symbols with a line above them &  $\bar{A}, \bar{F}, \bar{S}$ \\ \hline
     \rule{0pt}{12.5pt}matrix elements &   Upper case letter  with a line above them and index subscripts (rows, columns) &  $\bar{A}_{ij}, \bar{F}_{11}, \bar{S}_{\mu\nu}$\\  \hline
     \rule{0pt}{12.5pt}Operators & Presented as a symbol with a \^~above it & $\hat{O}, \hat{H}, \hat{F}$  \\  \hline
-    \rule{0pt}{12.5pt}functions & presented by a letter with their input variables enclosed in brackets () & $f(x), \Psi(\rvec)$\\  \hline
+    \rule{0pt}{12.5pt}functions & presented by a letter with their input variables enclosed in parentheses () & $f(x), \Psi(\rvec)$\\  \hline
     \rule{0pt}{12.5pt}functionals & presented by a letter with their input functions enclosed in square brackets [] & $E[f], F[\Psi]  $\\  \hline
   \end{tabular}}{\caption{Notation used in this thesis}\label{tab:notation}}
 \end{table}
 
-Additionally we will mostly be working with atomic units. This means that many common
-constants are reduced to unit value. The constants used in this thesis are the
-elementary charge $e$ the reduced Planck constant $\hbar$, the electron mass $m_e$ and
-vacuum permittivity $4\pi\epso$ are all unit value.
+Because we are working with atomic units, many of the common constants are reduced
+to unit value. The constants used in this thesis are the elementary charge $e$
+the reduced Planck constant $\hbar$, the electron mass $m_e$ and
+vacuum permittivity $\epso$ are all unit value.
 
-Finally, we will be working in Dirac notation. This means that we write a state
-vector of a system described by wave function $\Psi$ as $\ket{\Psi}$ and its
+Finally, we will be working in Dirac notation, which means we write a state
+vector of a wave function $\Psi$ as $\ket{\Psi}$ and its
 complex conjugate as $\bra{\Psi}$. The scalar product in Dirac notation is
 defined as
 \begin{equation}\label{eq:diracproduc}
